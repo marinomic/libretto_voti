@@ -3,8 +3,9 @@ Scrivere un programma Python che permetta di gestire un libretto universitario.
 Il programma dovrà definire una classe Voto, che rappresenta un singolo esame superato,
 ed una classe Libretto, che contiene l'elenco dei voti di uno studente.
 """
+from dataclasses import dataclass
 
-
+"""
 class Voto:
     def __init__(self, esame, cfu, punteggio, lode, data):
         self.esame = esame
@@ -21,6 +22,15 @@ class Voto:
 
     def __repr__(self):
         return f"Voto('{self.esame}', {self.cfu}, {self.punteggio}, {self.lode}, '{self.data}')"
+"""
+
+@dataclass
+class Voto:
+    esame: str
+    cfu: int
+    punteggio: int
+    lode: bool
+    data: str
 
 
 class Libretto:
@@ -44,7 +54,7 @@ class Libretto:
 voto_1 = Voto("Analisi Matematica 1", 10, 28, False, '2022-02-10')
 voto_2 = Voto("Basi di Dati", 8, 30, True, '2023-06-15')
 
-# print(voto_1, voto_2)
+print(voto_1, voto_2)
 #
 # miei_voti = [voto_1, voto_2]
 # print(miei_voti)
