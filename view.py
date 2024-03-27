@@ -7,14 +7,20 @@ class View(object):
         self._page = page
         self._page.title = "TdP 2024 - Libretto"
         self._page.horizontal_alignment = 'CENTER'
+        self._page.theme_mode = ft.ThemeMode.DARK
         self._titolo = None
         self._datePicker = None
-
-
 
     def caricaInterfaccia(self):
         self._titolo = ft.Text("Il mio Libretto Voti ++",
                                color="blue", size=24)
+
+        self.__theme_switch = ft.Switch(label="Light theme", on_change=self.theme_changed)
+        self._page.controls.append(
+            ft.Row(spacing=30, controls=[self.__theme_switch, self._titolo ],
+                   alignment=ft.MainAxisAlignment.START)
+        )
+
 
         # Row 1
         self._txtIn = ft.TextField(label="Nome",width=300)
@@ -45,7 +51,7 @@ class View(object):
         # Row 3
         self._lvOut = ft.ListView()
 
-        self._page.add(self._titolo, row1, row2, self._lvOut)
+        self._page.add(row1, row2, self._lvOut)
 
     def setController(self,controller):
         self._controller = controller
@@ -56,3 +62,19 @@ class View(object):
         for i in range(18,31):
             self._ddVoto.options.append(ft.dropdown.Option(str(i)))
         self._ddVoto.options.append(ft.dropdown.Option("30L"))
+
+    def theme_changed(self, e):
+        """Function that changes the color theme of the app, when the corresponding
+        switch is triggered"""
+        self._page.theme_mode = (
+            ft.ThemeMode.DARK
+            if self._page.theme_mode == ft.ThemeMode.LIGHT
+            else ft.ThemeMode.LIGHT
+        )
+        self.__theme_switch.label = (
+            "Light theme" if self._page.theme_mode == ft.ThemeMode.LIGHT else "Dark theme"
+        )
+        # self.__txt_container.bgcolor = (
+        #     ft.colors.GREY_900 if self.page.theme_mode == ft.ThemeMode.DARK else ft.colors.GREY_300
+        # )
+        self._page.update()
