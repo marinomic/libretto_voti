@@ -36,7 +36,7 @@ lib.append(Voto("Algebra Lineare", 10, 24,False, '2020-06-01'))
 lib.append(Voto("Fisica 1", 10, 21,False, '2020-06-02'))
 
 migliorato = lib.crea_migliorato()
-lib.append(Voto("Tesi", 3, 0,False, '2020-06-01'))
+lib.append(Voto("Tesi", 3, 0, False, '2020-06-01'))
 
 print("Libretto originario")
 lib.stampa()
