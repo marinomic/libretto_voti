@@ -1,7 +1,12 @@
+"""
+Nel controller vanno tutti i metodi che andranno a modificare
+l'interfaccia grafica
+"""
 from view import View
 from voto import Libretto, Voto
 import flet as ft
 import datetime
+
 
 class Controller(object):
     def __init__(self, view: View):
@@ -50,7 +55,7 @@ class Controller(object):
             self._view.update()
             return
 
-        self._model.append(Voto(nameEsame,intCfu,punteggio,lode,
+        self._model.append(Voto(nameEsame, intCfu, punteggio, lode,
                                 f"{data.year}-{data.month}-{data.day}"))
         self._view._lvOut.controls.append(ft.Text("Voto correttamente aggiunto.",
                                                   color="green"))
@@ -60,8 +65,6 @@ class Controller(object):
         #     punteggio: int
         #     lode: bool
         #     data: str
-
-
 
     def handlePrint(self, e):
         outList = self._model.stampaGUI()
