@@ -3,19 +3,22 @@ Nel controller vanno tutti i metodi che andranno a modificare
 l'interfaccia grafica
 """
 from view import View
-from voto import Libretto, Voto
+from modello.voto import Libretto, Voto
 import flet as ft
-import datetime
 
 
 class Controller(object):
-    def __init__(self, view: View):
+    def __init__(self, view: View, Libretto: Libretto):
         self._view = view
         self._model = Libretto()
         self.startupLibretto()
 
     def handleAdd(self, e):
-
+        #     esame: str
+        #     cfu: int
+        #     punteggio: int
+        #     lode: bool
+        #     data: str
         nameEsame = self._view._txtIn.value
         if nameEsame == "":
             self._view._lvOut.controls.append(ft.Text("Il campo nome non può essere vuoto!",
@@ -60,11 +63,6 @@ class Controller(object):
         self._view._lvOut.controls.append(ft.Text("Voto correttamente aggiunto.",
                                                   color="green"))
         self._view.update()
-        #     esame: str
-        #     cfu: int
-        #     punteggio: int
-        #     lode: bool
-        #     data: str
 
     def handlePrint(self, e):
         outList = self._model.stampaGUI()

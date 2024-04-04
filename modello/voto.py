@@ -2,7 +2,7 @@
 
 import dataclasses
 import operator
-
+from database.voti_dao import VotiDao
 
 @dataclasses.dataclass
 class Voto:
@@ -38,6 +38,7 @@ def estrai_campo_esame(v):
 class Libretto:
     def __init__(self):
         self._voti = []
+        self._voti_dao = VotiDao()
 
     def append(self, voto):
         if self.has_voto(voto) is False and self.has_conflitto(voto) is False:
@@ -181,9 +182,12 @@ class Libretto:
 
     def stampaGUI(self):
         outList = [f"Hai {len(self._voti)} voti"]
-        for v in self._voti:
+        # for v in self._voti:
+        #     outList.append(v)
+        # outList.append(f"La media vale {self.media():.2f}")
+        voti = self._voti_dao.get_all_voti()
+        for v in voti:
             outList.append(v)
-        outList.append(f"La media vale {self.media():.2f}")
         return outList
 
     def cancella_inferiori(self, punteggio):

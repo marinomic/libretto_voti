@@ -35,6 +35,11 @@ class View(object):
         )
 
         # Row 1
+        #     esame: str
+        #     cfu: int
+        #     punteggio: int
+        #     lode: bool
+        #     data: str
         self._txtIn = ft.TextField(label="Nome", width=300)
         self._txtCFU = ft.TextField(label="CFU", width=100)
         self._ddVoto = ft.Dropdown(label="Voto", width=100)
